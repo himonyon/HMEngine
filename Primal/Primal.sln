@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMEditor", "HMEditor\HMEditor.csproj", "{DDDBB2FA-558C-47E1-8EF9-E5F6D2948A45}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HMEngine", "HMEngine\HMEngine.vcxproj", "{CEFEB689-D82E-41F3-AC88-4AAC39A5AEF6}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEFEB689-D82E-41F3-AC88-4AAC39A5AEF6}.Debug|x64.ActiveCfg = Debug|x64
+		{CEFEB689-D82E-41F3-AC88-4AAC39A5AEF6}.Debug|x64.Build.0 = Debug|x64
+		{CEFEB689-D82E-41F3-AC88-4AAC39A5AEF6}.Release|x64.ActiveCfg = Release|x64
+		{CEFEB689-D82E-41F3-AC88-4AAC39A5AEF6}.Release|x64.Build.0 = Release|x64
+		{DDDBB2FA-558C-47E1-8EF9-E5F6D2948A45}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DDDBB2FA-558C-47E1-8EF9-E5F6D2948A45}.Debug|x64.Build.0 = Debug|Any CPU
+		{DDDBB2FA-558C-47E1-8EF9-E5F6D2948A45}.Release|x64.ActiveCfg = Release|Any CPU
+		{DDDBB2FA-558C-47E1-8EF9-E5F6D2948A45}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B03FEC45-49C8-4A01-90CB-CC8E7718C554}
+	EndGlobalSection
+EndGlobal
