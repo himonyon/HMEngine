@@ -7,11 +7,23 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Game\CreateProjectView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Game\OpenProjectView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Game\ProjectRefWIndow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Game\CreateProjectView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Game\OpenProjectView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Game\ProjectRefWIndow.xaml">
       <SubType>Designer</SubType>
     </Page>

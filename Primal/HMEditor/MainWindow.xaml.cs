@@ -25,6 +25,7 @@ namespace HMEditor
         {
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
+            this.WindowState = WindowState.Minimized;
         }
 
         private void OnMainWindowLoaded(object sener, RoutedEventArgs e)

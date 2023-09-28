@@ -7,6 +7,7 @@
 *.log
 
 *x64/
+*obj/
 
 # Compiled Object files
 *.slo
