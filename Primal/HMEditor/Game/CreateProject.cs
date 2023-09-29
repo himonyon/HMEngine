@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Windows.Media.Animation;
 
 namespace HMEditor.Game
 {
@@ -15,35 +14,41 @@ namespace HMEditor.Game
     public class ProjectTemplete
     {
         [DataMember]
-        public string ProjectType { get; set; }
+        public string? ProjectType { get; set; }
         [DataMember]
-        public string ProjectFile { get; set; }
+        public string? ProjectFile { get; set; }
         [DataMember]
-        public List<string> Folders { get; set; }
+        public List<string>? Folders { get; set; }
+
+        public byte[]? Icon { get; set; }
+        public byte[]? Screenshot { get; set; }
+        public string? IconFilePath { get; set; }
+        public string? ScreenshotFilePath { get; set; }
+        public string? ProjectFilePath { get; set; }
     }
 
     public class CreateProject : ViewModelBase
     {
         // TODO : get the path from the installation location
         private readonly string mTemplatePath = @"..\..\HMEditor\ProjectTemplates";
-        private string mName = "NewProject";
-        public string Name
+        private string mProjectName = "NewProject";
+        public string ProjectName
         {
-            get => mName;
+            get => mProjectName;
             set
             {
-                mName = value;
-                OnPropertyChanged(nameof(Name));
+                mProjectName = value;
+                OnPropertyChanged(nameof(mProjectName));
             }
         }
 
-        private string mPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\HMEngine\";
-        public string Path
+        private string mProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\HMEngine\";
+        public string ProjectPath
         {
-            get => mPath;
+            get => mProjectPath;
             set
             {
-                mPath = value;
+                mProjectPath = value;
                 OnPropertyChanged(nameof(Path));
             }
         }
@@ -56,11 +61,24 @@ namespace HMEditor.Game
             ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplete>(mProjectTemplates);
             try
             {
-                string[] templatesFIles = Directory.GetFiles(mTemplatePath, "template.xml", SearchOption.AllDirectories);
-                Debug.Assert(templatesFIles.Any());
-                foreach(string file in templatesFIles)
+                string[] templatesFiles = Directory.GetFiles(mTemplatePath, "template.xml", SearchOption.AllDirectories);
+                Debug.Assert(templatesFiles.Any());
+                foreach(string file in templatesFiles)
                 {
-                    Serializer.FromFile<ProjectTemplete>(file);
+                    ProjectTemplete template = Serializer.FromFile<ProjectTemplete>(file);
+                    string? directoryPath = Path.GetDirectoryName(file);
+                    if(directoryPath == null || template.ProjectFile == null)
+                    {
+                        Debug.WriteLine("DirectoryName is Null");
+                        return;
+                    }
+                    template.IconFilePath = Path.GetFullPath(Path.Combine(directoryPath, "icon.png"));
+                    template.Icon = File.ReadAllBytes(template.IconFilePath);
+                    template.ScreenshotFilePath = Path.GetFullPath(Path.Combine(directoryPath, "Screenshot.png"));
+                    template.Screenshot = File.ReadAllBytes(template.ScreenshotFilePath);
+                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(directoryPath, template.ProjectFile));
+
+                    mProjectTemplates.Add(template);
                 }
             }
             catch(Exception ex) 
