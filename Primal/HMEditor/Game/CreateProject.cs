@@ -38,18 +38,42 @@ namespace HMEditor.Game
             set
             {
                 mProjectName = value;
+                ValidateProjectPath();
                 OnPropertyChanged(nameof(mProjectName));
             }
         }
 
-        private string mProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\HMEngine\";
+        private string mProjectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\HMProjects\";
         public string ProjectPath
         {
             get => mProjectPath;
             set
             {
                 mProjectPath = value;
+                ValidateProjectPath();
                 OnPropertyChanged(nameof(Path));
+            }
+        }
+
+        private bool mIsValid = false;
+        public bool IsValid
+        {
+            get => mIsValid;
+            set
+            {
+                mIsValid = value;
+                OnPropertyChanged(nameof(IsValid));
+            }
+        }
+
+        private string mErrorMsg = "";
+        public string ErrorMsg
+        {
+            get => mErrorMsg;
+            set
+            {
+                mErrorMsg = value;
+                OnPropertyChanged(nameof(ErrorMsg));
             }
         }
 
@@ -80,12 +104,85 @@ namespace HMEditor.Game
 
                     mProjectTemplates.Add(template);
                 }
+                ValidateProjectPath();
             }
             catch(Exception ex) 
             {
                 Debug.WriteLine(ex.Message);
                 //TODO : error log
             }
+        }
+
+        public string CreateNewProject(ProjectTemplete template)
+        {
+            ValidateProjectPath();
+            if (!IsValid)
+            {
+                return string.Empty;
+            }
+            if (!Path.EndsInDirectorySeparator(ProjectPath)) ProjectPath += @"\";
+            string path = $@"{ProjectPath}{ProjectName}\";
+
+            try
+            {
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                if(template.Folders == null || template.Folders.Count == 0)
+                {
+                    return string.Empty;
+                }
+                foreach(string folder in template.Folders)
+                {
+                    Directory.CreateDirectory(Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path), folder)));
+                }
+                DirectoryInfo directoryInfo = new DirectoryInfo(path + @".Hm\");
+                directoryInfo.Attributes |= FileAttributes.Hidden;
+                File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "icon.png")));
+                File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Screenshot.png")));
+
+                Project newProject = new Project(ProjectName, path);
+                Serializer.ToFIle(newProject, path + "ProjectName" + Project.Extension);
+                return path;
+
+                return "";
+            }catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                return string.Empty;
+            }
+        }
+
+        private bool ValidateProjectPath()
+        {
+            string path = ProjectPath;
+            if (!Path.EndsInDirectorySeparator(path)) path += @"\";
+            path += $@"{ProjectName}\";
+
+            IsValid = false;
+            if(string.IsNullOrWhiteSpace(ProjectName.Trim()))
+            {
+                ErrorMsg = "Type in a project name.";
+            }else if(ProjectName.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
+            {
+                ErrorMsg = "Invalid characters used in project name";
+            }
+            else if (string.IsNullOrWhiteSpace(ProjectPath.Trim()))
+            {
+                ErrorMsg = "Select a valid project folder.";
+            }
+            else if (ProjectPath.IndexOfAny(Path.GetInvalidPathChars()) != -1)
+            {
+                ErrorMsg = "Invalid characters used in project path";
+            }
+            else if(Directory.Exists(path) && Directory.EnumerateFileSystemEntries(path).Any())
+            {
+                ErrorMsg = "Selected project folder already exists and is not empty";
+            }
+            else
+            {
+                ErrorMsg = string.Empty;
+                IsValid = true;
+            }
+            return IsValid;
         }
     }
 }

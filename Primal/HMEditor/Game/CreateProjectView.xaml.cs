@@ -24,5 +24,19 @@ namespace HMEditor.Game
         {
             InitializeComponent();
         }
+
+        private void OnCreate_Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProject vm = DataContext as CreateProject;
+            string projectPath = vm.CreateNewProject(templateListBox.SelectedItem as ProjectTemplete);
+            bool dialogResult = false;
+            Window win = Window.GetWindow(this);
+            if (!string.IsNullOrEmpty(projectPath))
+            {
+                dialogResult = true;
+            }
+            win.DialogResult = dialogResult;
+            win.Close();
+        }
     }
 }
