@@ -139,8 +139,11 @@ namespace HMEditor.Game
                 File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "icon.png")));
                 File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Screenshot.png")));
 
-                Project newProject = new Project(ProjectName, path);
-                Serializer.ToFIle(newProject, path + "ProjectName" + Project.Extension);
+                string projectXml = File.ReadAllText(template.ProjectFilePath);
+                projectXml = string.Format(projectXml, ProjectName, ProjectPath);
+                string projectPath = Path.GetFullPath(Path.Combine(path, $"{ProjectName}{Project.Extension}"));
+                File.WriteAllText(projectPath, projectXml);
+
                 return path;
 
                 return "";
