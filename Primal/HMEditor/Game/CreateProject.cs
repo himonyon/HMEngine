@@ -96,7 +96,7 @@ namespace HMEditor.Game
                         Debug.WriteLine("DirectoryName is Null");
                         return;
                     }
-                    template.IconFilePath = Path.GetFullPath(Path.Combine(directoryPath, "icon.png"));
+                    template.IconFilePath = Path.GetFullPath(Path.Combine(directoryPath, "Icon.png"));
                     template.Icon = File.ReadAllBytes(template.IconFilePath);
                     template.ScreenshotFilePath = Path.GetFullPath(Path.Combine(directoryPath, "Screenshot.png"));
                     template.Screenshot = File.ReadAllBytes(template.ScreenshotFilePath);
@@ -136,7 +136,7 @@ namespace HMEditor.Game
                 }
                 DirectoryInfo directoryInfo = new DirectoryInfo(path + @".Hm\");
                 directoryInfo.Attributes |= FileAttributes.Hidden;
-                File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "icon.png")));
+                File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Icon.png")));
                 File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Screenshot.png")));
 
                 string projectXml = File.ReadAllText(template.ProjectFilePath);
@@ -151,6 +151,7 @@ namespace HMEditor.Game
             {
                 Debug.WriteLine(ex.ToString());
                 return string.Empty;
+                //TODO : error log
             }
         }
 

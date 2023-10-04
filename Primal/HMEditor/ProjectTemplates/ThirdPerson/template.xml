@@ -4,6 +4,6 @@
 		<a:string>.Content</a:string>
 		<a:string>Source</a:string>
 	</Folders>
-	<ProjectFile>project.hm</ProjectFile>
+	<ProjectFile>project.hmproject</ProjectFile>
 	<ProjectType>ThirdPerson</ProjectType>
 </ProjectTemplete>
