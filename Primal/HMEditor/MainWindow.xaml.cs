@@ -1,6 +1,7 @@
 ﻿using HMEditor.Game;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace HMEditor
         {
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
-            this.WindowState = WindowState.Minimized;
+            Closing += OnMainWindowClosing;
         }
 
         private void OnMainWindowLoaded(object sener, RoutedEventArgs e)
@@ -34,16 +35,23 @@ namespace HMEditor
             OpenProjectRefWIndow();
         }
 
+        private void OnMainWindowClosing(object? sender, CancelEventArgs e)
+        {
+            Closing -= OnMainWindowClosing;
+            Project.Current?.Unload();
+        }
+
         private void OpenProjectRefWIndow()
         {
             var projectRefWindow = new ProjectRefWIndow();
-            if(projectRefWindow.ShowDialog() == false)
+            if(projectRefWindow.ShowDialog() == false || projectRefWindow.DataContext == null)
             {
                 Application.Current.Shutdown();
             }
             else
             {
-
+                Project.Current?.Unload();
+                DataContext = projectRefWindow.DataContext;
             }
         }
     }

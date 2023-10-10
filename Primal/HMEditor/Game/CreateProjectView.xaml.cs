@@ -36,7 +36,7 @@ namespace HMEditor.Game
                 //プロジェクト生成成功
                 dialogResult = true;
                 Project project = OpenProject.Open(new ProjectData() { ProjectName = vm.ProjectName, ProjectPath = projectPath });
-
+                win.DataContext = project;
             }
             win.DialogResult = dialogResult;
             win.Close();

@@ -11,7 +11,7 @@ namespace HMEditor.Game.Utilities
 {
     public static class Serializer
     {
-        public static void ToFIle<T>(T instance, string path)
+        public static void ToFile<T>(T instance, string path)
         {
             try
             {

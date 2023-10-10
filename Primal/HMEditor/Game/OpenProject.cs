@@ -74,7 +74,7 @@ namespace HMEditor.Game
             }
             WriteProjectData();
 
-            return null;
+            return Project.Load(project.FullPath);
         }
 
         private static void ReadProjectData()
@@ -98,7 +98,7 @@ namespace HMEditor.Game
         private static void WriteProjectData()
         {
             List<ProjectData> projects= mProjects.OrderBy(x => x.Date).ToList();
-            Serializer.ToFIle(new ProjectDataList() { Projects = projects }, mProjectDataPath);
+            Serializer.ToFile(new ProjectDataList() { Projects = projects }, mProjectDataPath);
         }
     }
 }

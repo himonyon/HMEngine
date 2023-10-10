@@ -145,8 +145,6 @@ namespace HMEditor.Game
                 File.WriteAllText(projectPath, projectXml);
 
                 return path;
-
-                return "";
             }catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
