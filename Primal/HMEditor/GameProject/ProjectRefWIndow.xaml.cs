@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HMEditor.Game
+namespace HMEditor.GameProject
 {
     /// <summary>
     /// ProjectRefWIndow.xaml の相互作用ロジック

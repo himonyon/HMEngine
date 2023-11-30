@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HMEditor.Game
+namespace HMEditor.GameProject
 {
     [DataContract]
     class Scene : ViewModelBase

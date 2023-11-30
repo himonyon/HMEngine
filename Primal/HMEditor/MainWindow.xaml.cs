@@ -1,4 +1,4 @@
-﻿using HMEditor.Game;
+﻿using HMEditor.GameProject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

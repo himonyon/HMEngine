@@ -1,4 +1,4 @@
-﻿using HMEditor.Game.Utilities;
+﻿using HMEditor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace HMEditor.Game
+namespace HMEditor.GameProject
 {
     [DataContract]
     public class ProjectTemplete

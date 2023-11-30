@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HMEditor.Game.Utilities
+namespace HMEditor.Utilities
 {
     public static class Serializer
     {

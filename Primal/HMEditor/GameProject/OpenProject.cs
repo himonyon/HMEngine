@@ -1,4 +1,4 @@
-﻿using HMEditor.Game.Utilities;
+﻿using HMEditor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HMEditor.Game
+namespace HMEditor.GameProject
 {
     [DataContract]
     public class ProjectData
