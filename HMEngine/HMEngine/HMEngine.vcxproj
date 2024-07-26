@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="engine\source\main.cpp" />
+    <ClCompile Include="Engine\Source\Core\Core.cpp" />
+    <ClCompile Include="Engine\Source\RHI\DirectX12\D3D12.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Source\RHI\DirectX12\D3D12.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
