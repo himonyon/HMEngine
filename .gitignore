@@ -35,4 +35,5 @@
 *.vs
 
 # 文字列マッチが見つかるパスを除外する
-directory-x64
+HMEngine/x64/
+HMEngine/HMEngine/x64/
