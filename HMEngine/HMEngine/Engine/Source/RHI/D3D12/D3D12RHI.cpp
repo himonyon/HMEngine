@@ -21,7 +21,7 @@ void D3D12RHI::Initialize()
 	//CreateDXGI Factory
 	UINT dxgiCreateFactoryFlag = 0;
 	ComPtr<IDXGIFactory6> dxgiFactory;
-	//ThrowIfFailed(CreateDXGIFactory2(dxgiCreateFactoryFlag, IID_PPV_ARGS(&dxgiFactory)), "DXGIFactory Create Faild.");
+	ThrowIfFailed(CreateDXGIFactory2(dxgiCreateFactoryFlag, IID_PPV_ARGS(&dxgiFactory)), "DXGIFactory Create Faild.");
 
 	//Device initialize
 	ComPtr<IDXGIAdapter4> adapter;
@@ -40,7 +40,7 @@ void D3D12RHI::Initialize()
 		for (int level = 0; level < 5; level++)
 		{
 			//Create Device
-			//if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[level], IID_PPV_ARGS(&m_device))))
+			if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[level], IID_PPV_ARGS(&m_device))))
 			{
 				break;
 			}
@@ -54,7 +54,7 @@ void D3D12RHI::Initialize()
 		for (int level = 0; level < 5; level++)
 		{
 			//Create Device
-			//if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[level], IID_PPV_ARGS(&m_device))))
+			if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[level], IID_PPV_ARGS(&m_device))))
 			{
 				break;
 			}
