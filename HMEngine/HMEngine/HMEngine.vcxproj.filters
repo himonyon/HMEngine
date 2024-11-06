@@ -18,18 +18,36 @@
     <ClCompile Include="Engine\Source\Core\Core.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Source\RHI\DirectX12\D3D12.cpp">
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12.cpp">
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Adapter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Source\Core\HMEngine.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Source\RHI\DirectX12\D3D12.h">
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12.h">
+    <ClInclude Include="Engine\Source\RHI\D3D12\include\d3x12.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Adapter.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\Core\HMEngine.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

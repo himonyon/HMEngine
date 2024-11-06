@@ -20,10 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Source\Core\Core.cpp" />
+    <ClCompile Include="Engine\Source\Core\HMEngine.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Adapter.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Source\Core\HMEngine.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Adapter.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\include\d3x12.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
