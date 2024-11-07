@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Source\Core\HMEngine.h" />
+    <ClInclude Include="Engine\Source\include\common.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Adapter.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h" />
@@ -119,6 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

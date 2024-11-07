@@ -1,3 +1,5 @@
+// Copyright (c) 2024 YukiHino. All rights reserved.
+
 #include <Windows.h>
 
 #include "HMEngine.h"
@@ -33,6 +35,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
     ShowWindow(hwnd, nCmdShow);
 
+    HMEngine* engine = new HMEngine();
+
+    engine->Initialize();
+
     MSG msg = {};
     while (true)
     {
@@ -45,8 +51,11 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
         }
         if (isQuit)
         {
+            engine->Terminate();
             break;
         }
+
+        engine->Loop();
     }
 
     return 0;
