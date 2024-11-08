@@ -10,7 +10,9 @@ struct IDXGIAdapter;
 class D3D12Device
 {
 public:
-	bool CreateDevice(ComPtr<IDXGIAdapter> adapter);
+	bool CreateD3D12Device(ComPtr<IDXGIAdapter> adapter);
+
+	ComPtr<ID3D12Device> GetD3D12Device();
 private:
-	ComPtr<ID3D12Device> m_device;
+	ComPtr<ID3D12Device> m_pDevice;
 };

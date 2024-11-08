@@ -1,6 +1,7 @@
 // Copyright (c) 2024 YukiHino. All rights reserved.
 
 #include "include/d3x12.h"
+#include "D3D12CommandQueue.h"
 #include "D3D12Device.h"
 #include "D3D12Adapter.h"
 #include "D3D12Util.h"
@@ -21,12 +22,16 @@ void D3D12RHI::Initialize()
 	}
 #endif
 	
-	//Create Adapter
-	m_d3d12Adapter = std::make_unique<D3D12Adapter>();
-	ThrowIfFailed(m_d3d12Adapter->CreateFactory(), "DXGIFactory did not find.");
-	ThrowIfFailed(m_d3d12Adapter->CreateAdapter(), "DXGIAdapter did not find.");
+	//Create adapter
+	m_pD3D12Adapter = std::make_unique<D3D12Adapter>();
+	ThrowIfFailed(m_pD3D12Adapter->CreateDXGIFactory(), "DXGIFactory did not find.");
+	ThrowIfFailed(m_pD3D12Adapter->CreateDXGIAdapter(), "DXGIAdapter did not find.");
 
-	//Create Device
-	m_d3d12Device = std::make_unique<D3D12Device>();
-	ThrowIfFailed(m_d3d12Device->CreateDevice(m_d3d12Adapter->GetAdapter()), "D3D12Device did not find.");
+	//Create device
+	m_pD3D12Device = std::make_unique<D3D12Device>();
+	ThrowIfFailed(m_pD3D12Device->CreateD3D12Device(m_pD3D12Adapter->GetDXGIAdapter()), "D3D12Device did not find.");
+
+	//Create command queue
+	m_pD3D12CommandQueue = std::make_unique<D3D12CommandQueue>();
+	ThrowIfFailed(m_pD3D12CommandQueue->CreateD3D12CommandQueue(m_pD3D12Device->GetD3D12Device()), "D3D12CommandQueue did not find.");
 }

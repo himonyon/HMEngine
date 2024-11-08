@@ -10,14 +10,14 @@ struct IDXGIAdapter4;
 class D3D12Adapter
 {
 public:
-	bool CreateFactory();
-	bool CreateAdapter();
+	bool CreateDXGIFactory();
+	bool CreateDXGIAdapter();
 
 public:
-	ComPtr<IDXGIAdapter4> GetAdapter();
+	ComPtr<IDXGIAdapter4> GetDXGIAdapter();
 
 private:
-	ComPtr<IDXGIFactory6> m_factory6;	
+	ComPtr<IDXGIFactory6> m_pFactory6;	
 
-	ComPtr<IDXGIAdapter4> m_adapter4;
+	ComPtr<IDXGIAdapter4> m_pAdapter4;
 };

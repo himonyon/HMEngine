@@ -5,7 +5,7 @@
 #include "D3D12Adapter.h"
 #include "D3D12Device.h"
 
-bool D3D12Device::CreateDevice(ComPtr<IDXGIAdapter> adapter)
+bool D3D12Device::CreateD3D12Device(ComPtr<IDXGIAdapter> adapter)
 {
 	//Create Device
 	
@@ -20,11 +20,16 @@ bool D3D12Device::CreateDevice(ComPtr<IDXGIAdapter> adapter)
 
 	for (int index = 0; index < std::size(featureLevels); index++)
 	{
-		if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[index], IID_PPV_ARGS(&m_device))))
+		if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), featureLevels[index], IID_PPV_ARGS(&m_pDevice))))
 		{
 			return true;
 		}
 	}
 
 	return false;
+}
+
+ComPtr<ID3D12Device> D3D12Device::GetD3D12Device()
+{
+	return m_pDevice;
 }
