@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-#include "include/d3x12.h"
-#include "D3D12Adapter.h"
+#include <dxgi1_6.h>
+#include "DXGIAdapter.h"
 
-bool D3D12Adapter::CreateDXGIFactory()
+bool DXGIAdapter::CreateDXGIFactory()
 {
 	//CreateDXGI Factory
 	UINT dxgiCreateFactoryFlag = 0;
@@ -16,7 +16,7 @@ bool D3D12Adapter::CreateDXGIFactory()
 	return false;
 }
 
-bool D3D12Adapter::CreateDXGIAdapter()
+bool DXGIAdapter::CreateDXGIAdapter()
 {
 	//Create Adapter
 	for (int index = 0; m_pFactory6->EnumAdapterByGpuPreference(index, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(&m_pAdapter4)) != DXGI_ERROR_NOT_FOUND; index++)
@@ -47,7 +47,12 @@ bool D3D12Adapter::CreateDXGIAdapter()
 	return false;
 }
 
-ComPtr<IDXGIAdapter4> D3D12Adapter::GetDXGIAdapter()
+ComPtr<IDXGIAdapter4> DXGIAdapter::GetDXGIAdapter()
 {
 	return m_pAdapter4;
+}
+
+ComPtr<IDXGIFactory6> DXGIAdapter::GetDXGIFactory()
+{
+	return m_pFactory6;
 }

@@ -17,3 +17,8 @@ bool D3D12CommandQueue::CreateD3D12CommandQueue(ComPtr<ID3D12Device> pDevice)
 	}
 	return false;
 }
+
+ComPtr<ID3D12CommandQueue> D3D12CommandQueue::GetCommandQueue()
+{
+	return m_pCommandQueue;
+}

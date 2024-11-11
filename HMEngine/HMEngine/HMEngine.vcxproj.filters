@@ -21,9 +21,6 @@
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Adapter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -31,6 +28,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,9 +47,6 @@
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Adapter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -57,6 +57,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

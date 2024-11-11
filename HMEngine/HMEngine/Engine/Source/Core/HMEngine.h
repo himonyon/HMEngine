@@ -2,19 +2,17 @@
 
 #pragma once
 
-#include "../include/common.h"
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-class D3D12RHI;
 class HMEngine
 {
 public:
-	HMEngine();
-	~HMEngine();
+	static int Run(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ PWSTR lpCmdLine, _In_ int nCmdShow);
+	static int Loop();
+	static void Terminate();
 
-	void Initialize();
-	void Loop();
-	void Terminate();
+	static HWND GetWnd();
 
-private: 
-	u_ptr<D3D12RHI> m_pD3DRHI;
+private:
+	static HWND m_hwnd;
 };

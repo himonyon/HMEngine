@@ -13,6 +13,9 @@ class D3D12CommandQueue
 public:
 	bool CreateD3D12CommandQueue(ComPtr<ID3D12Device> pDevice);
 
+public:
+	ComPtr<ID3D12CommandQueue> GetCommandQueue();
+
 private:
 	ComPtr<ID3D12CommandQueue> m_pCommandQueue;
 };

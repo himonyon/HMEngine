@@ -7,7 +7,7 @@ using namespace Microsoft::WRL;
 struct IDXGIFactory6;
 struct IDXGIAdapter4;
 
-class D3D12Adapter
+class DXGIAdapter
 {
 public:
 	bool CreateDXGIFactory();
@@ -15,6 +15,7 @@ public:
 
 public:
 	ComPtr<IDXGIAdapter4> GetDXGIAdapter();
+	ComPtr<IDXGIFactory6> GetDXGIFactory();
 
 private:
 	ComPtr<IDXGIFactory6> m_pFactory6;	

@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "include/d3x12.h"
-#include "D3D12Adapter.h"
+#include "../D3DCommon/DXGIAdapter.h"
 #include "D3D12Device.h"
 
 bool D3D12Device::CreateD3D12Device(ComPtr<IDXGIAdapter> adapter)
