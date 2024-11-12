@@ -24,6 +24,7 @@
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RenderTargetView.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RenderTargetView.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\include\d3x12.h" />

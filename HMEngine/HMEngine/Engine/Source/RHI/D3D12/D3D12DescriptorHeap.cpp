@@ -7,7 +7,7 @@
 
 bool D3D12DescriptorHeap::CreateD3D12DescriptorHeap(ComPtr<ID3D12Device> pDevice)
 {
-	D3D12_DESCRIPTOR_HEAP_DESC desc;
+	D3D12_DESCRIPTOR_HEAP_DESC desc{};
 	desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
 	desc.NumDescriptors = DXGISwapChain::FrameCount;
 	desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
@@ -19,4 +19,9 @@ bool D3D12DescriptorHeap::CreateD3D12DescriptorHeap(ComPtr<ID3D12Device> pDevice
 	}
 
 	return false;
+}
+
+ComPtr<ID3D12DescriptorHeap> D3D12DescriptorHeap::GetDescriptorHeap()
+{
+	return m_pD3D12DescriptorHeap;
 }

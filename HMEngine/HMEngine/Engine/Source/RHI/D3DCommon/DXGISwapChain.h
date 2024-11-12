@@ -13,6 +13,7 @@ class DXGISwapChain
 public:
 	bool CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pDevice);
 
+	ComPtr<IDXGISwapChain1> GetDXGISwapChain();
 public:
 	static const UINT FrameCount = 2; 
 

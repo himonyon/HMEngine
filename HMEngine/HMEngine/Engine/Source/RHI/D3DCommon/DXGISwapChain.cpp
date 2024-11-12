@@ -8,7 +8,7 @@
 
 bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pCommandQueue)
 {
-	DXGI_SWAP_CHAIN_DESC1 desc;
+	DXGI_SWAP_CHAIN_DESC1 desc{};
 	//SwapChain Buffer Setting
 	desc.Width = 0;
 	desc.Height = 0;
@@ -31,8 +31,13 @@ bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory,
 	ComPtr<IDXGISwapChain1> tmpSwapChain;
 	if (SUCCEEDED(pFactory->CreateSwapChainForHwnd(pCommandQueue.Get(), HMEngine::GetWnd(), &desc, NULL, NULL, &m_pDXGISwapChain)))
 	{
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
+}
+
+ComPtr<IDXGISwapChain1> DXGISwapChain::GetDXGISwapChain()
+{
+	return m_pDXGISwapChain;
 }
