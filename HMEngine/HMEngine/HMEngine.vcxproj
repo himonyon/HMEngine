@@ -22,6 +22,7 @@
     <ClCompile Include="Engine\Source\Core\Core.cpp" />
     <ClCompile Include="Engine\Source\Core\HMEngine.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.cpp" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Source\Core\HMEngine.h" />
     <ClInclude Include="Engine\Source\include\common.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h" />

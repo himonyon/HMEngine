@@ -6,7 +6,7 @@
 #include "../../Core/HMEngine.h"
 #include "DXGISwapChain.h"
 
-bool DXGISwapChain::CreateSwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pCommandQueue)
+bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pCommandQueue)
 {
 	DXGI_SWAP_CHAIN_DESC1 desc;
 	//SwapChain Buffer Setting
@@ -21,7 +21,7 @@ bool DXGISwapChain::CreateSwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, Com
 	//Usage
 	desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	//else
-	desc.BufferCount = 2;
+	desc.BufferCount = FrameCount;
 	desc.Scaling = DXGI_SCALING_STRETCH;
 	desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	desc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
@@ -29,7 +29,7 @@ bool DXGISwapChain::CreateSwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, Com
 	//FullScreen setting desc
 	//DXGI_SWAP_CHAIN_FULLSCREEN_DESC fullscreenDesc;
 	ComPtr<IDXGISwapChain1> tmpSwapChain;
-	if (SUCCEEDED(pFactory->CreateSwapChainForHwnd(pCommandQueue.Get(), HMEngine::GetWnd(), &desc, NULL, NULL, &m_pSwapChain)))
+	if (SUCCEEDED(pFactory->CreateSwapChainForHwnd(pCommandQueue.Get(), HMEngine::GetWnd(), &desc, NULL, NULL, &m_pDXGISwapChain)))
 	{
 		return false;
 	}

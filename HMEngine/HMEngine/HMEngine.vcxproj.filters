@@ -36,6 +36,9 @@
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h">
@@ -63,6 +66,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
