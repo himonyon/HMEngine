@@ -6,7 +6,7 @@
 #include "../../Core/HMEngine.h"
 #include "DXGISwapChain.h"
 
-bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pCommandQueue)
+bool DXGISwapChain::CreateSwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pCommandQueue)
 {
 	DXGI_SWAP_CHAIN_DESC1 desc{};
 	//SwapChain Buffer Setting
@@ -29,7 +29,7 @@ bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory,
 	//FullScreen setting desc
 	//DXGI_SWAP_CHAIN_FULLSCREEN_DESC fullscreenDesc;
 	ComPtr<IDXGISwapChain1> tmpSwapChain;
-	if (SUCCEEDED(pFactory->CreateSwapChainForHwnd(pCommandQueue.Get(), HMEngine::GetWnd(), &desc, NULL, NULL, &m_pDXGISwapChain)))
+	if (SUCCEEDED(pFactory->CreateSwapChainForHwnd(pCommandQueue.Get(), HMEngine::GetWnd(), &desc, NULL, NULL, &m_pSwapChain)))
 	{
 		return true;
 	}
@@ -37,7 +37,7 @@ bool DXGISwapChain::CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory,
 	return false;
 }
 
-ComPtr<IDXGISwapChain1> DXGISwapChain::GetDXGISwapChain()
+ComPtr<IDXGISwapChain1> DXGISwapChain::GetSwapChain()
 {
-	return m_pDXGISwapChain;
+	return m_pSwapChain;
 }

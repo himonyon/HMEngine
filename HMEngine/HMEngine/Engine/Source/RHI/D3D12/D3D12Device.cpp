@@ -1,11 +1,13 @@
 // Copyright (c) 2024 YukiHino. All rights reserved.
 
 #include <iostream>
-#include "include/d3x12.h"
+#include <d3d12.h>
+#include <dxgi1_6.h>
+
 #include "../D3DCommon/DXGIAdapter.h"
 #include "D3D12Device.h"
 
-bool D3D12Device::CreateD3D12Device(ComPtr<IDXGIAdapter> adapter)
+bool D3D12Device::CreateDevice(ComPtr<IDXGIAdapter> adapter)
 {
 	//Create Device
 	
@@ -29,7 +31,7 @@ bool D3D12Device::CreateD3D12Device(ComPtr<IDXGIAdapter> adapter)
 	return false;
 }
 
-ComPtr<ID3D12Device> D3D12Device::GetD3D12Device()
+ComPtr<ID3D12Device> D3D12Device::GetDevice()
 {
 	return m_pDevice;
 }

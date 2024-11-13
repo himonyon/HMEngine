@@ -11,12 +11,12 @@ struct ID3D12CommandQueue;
 class DXGISwapChain
 {
 public:
-	bool CreateDXGISwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pDevice);
+	bool CreateSwapChian_ForD3D12(ComPtr<IDXGIFactory2> pFactory, ComPtr<ID3D12CommandQueue> pDevice);
 
-	ComPtr<IDXGISwapChain1> GetDXGISwapChain();
+	ComPtr<IDXGISwapChain1> GetSwapChain();
 public:
 	static const UINT FrameCount = 2; 
 
 private:
-	ComPtr<IDXGISwapChain1> m_pDXGISwapChain;
+	ComPtr<IDXGISwapChain1> m_pSwapChain;
 };

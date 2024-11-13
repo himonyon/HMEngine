@@ -10,12 +10,12 @@ struct IDXGIAdapter4;
 class DXGIAdapter
 {
 public:
-	bool CreateDXGIFactory();
-	bool CreateDXGIAdapter();
+	bool CreateFactory();
+	bool CreateAdapter();
 
 public:
-	ComPtr<IDXGIAdapter4> GetDXGIAdapter();
-	ComPtr<IDXGIFactory6> GetDXGIFactory();
+	ComPtr<IDXGIAdapter4> GetAdapter();
+	ComPtr<IDXGIFactory6> GetFactory();
 
 private:
 	ComPtr<IDXGIFactory6> m_pFactory6;	

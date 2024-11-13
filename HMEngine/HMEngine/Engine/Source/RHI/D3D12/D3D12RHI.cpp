@@ -1,8 +1,10 @@
 // Copyright (c) 2024 YukiHino. All rights reserved.
 
-#include "include/d3x12.h"
+#include <dxgi1_6.h>
+#include <d3d12.h>
 #include "../D3DCommon/DXGIAdapter.h"
 #include "../D3DCommon/DXGISwapChain.h"
+#include "D3D12CommandAllocator.h"
 #include "D3D12RenderTargetView.h"
 #include "D3D12DescriptorHeap.h"
 #include "D3D12CommandQueue.h"
@@ -16,7 +18,13 @@ D3D12RHI::~D3D12RHI() = default;
 
 void D3D12RHI::Initialize()
 {
-#if HM_DEBUG
+	LoadPipeline();
+	LoadAssets();
+}
+
+void D3D12RHI::LoadPipeline()
+{
+	#if HM_DEBUG
 	//TODO: Debug layer setting
 	ComPtr<ID3D12Debug> debugController;
 	if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
@@ -27,33 +35,41 @@ void D3D12RHI::Initialize()
 	
 	//Create adapter
 	m_pDXGIAdapter = std::make_unique<DXGIAdapter>();
-	ThrowIfFailed(m_pDXGIAdapter->CreateDXGIFactory(), "DXGIFactory did not find.");
-	ThrowIfFailed(m_pDXGIAdapter->CreateDXGIAdapter(), "DXGIAdapter did not find.");
+	ThrowIfFailed(m_pDXGIAdapter->CreateFactory(), "DXGIFactory did not find.");
+	ThrowIfFailed(m_pDXGIAdapter->CreateAdapter(), "DXGIAdapter did not find.");
 
 	//Create device
 	m_pD3D12Device = std::make_unique<D3D12Device>();
-	ThrowIfFailed(m_pD3D12Device->CreateD3D12Device(m_pDXGIAdapter->GetDXGIAdapter()), "Faild to create D3D12Device.");
+	ThrowIfFailed(m_pD3D12Device->CreateDevice(m_pDXGIAdapter->GetAdapter()), "Faild to create D3D12Device.");
 
 	//Create command queue
 	m_pD3D12CommandQueue = std::make_unique<D3D12CommandQueue>();
-	ThrowIfFailed(m_pD3D12CommandQueue->CreateD3D12CommandQueue(m_pD3D12Device->GetD3D12Device()), "Faild to create D3D12CommandQueue.");
+	ThrowIfFailed(m_pD3D12CommandQueue->CreateCommandQueue(m_pD3D12Device->GetDevice()), "Faild to create D3D12CommandQueue.");
 
 	//Create swap chain
 	m_pDXGISwapChain = std::make_unique<DXGISwapChain>();
-	ThrowIfFailed(m_pDXGISwapChain->CreateDXGISwapChian_ForD3D12(m_pDXGIAdapter->GetDXGIFactory(), m_pD3D12CommandQueue->GetCommandQueue()), "Faild to create DXGISwapChain");
+	ThrowIfFailed(m_pDXGISwapChain->CreateSwapChian_ForD3D12(m_pDXGIAdapter->GetFactory(), m_pD3D12CommandQueue->GetCommandQueue()), "Faild to create DXGISwapChain");
 
 	//Create descriptor heap
 	m_pD3D12DescriptorHeap = std::make_unique<D3D12DescriptorHeap>();
-	ThrowIfFailed(m_pD3D12DescriptorHeap->CreateD3D12DescriptorHeap(m_pD3D12Device->GetD3D12Device()), "Faild to create D3D12DescriptorHeap.");
+	ThrowIfFailed(m_pD3D12DescriptorHeap->CreateDescriptorHeap(m_pD3D12Device->GetDevice()), "Faild to create D3D12DescriptorHeap.");
 
 	//Create RTV
-	UINT rtvDescriptorSize = m_pD3D12Device->GetD3D12Device()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+	UINT rtvDescriptorSize = m_pD3D12Device->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = m_pD3D12DescriptorHeap->GetDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 	m_pD3D12RenderTargetView = std::make_unique<D3D12RenderTargetView>();
 	for (int i = 0; i < DXGISwapChain::FrameCount; i++)
 	{
-		ThrowIfFailed(m_pDXGISwapChain->GetDXGISwapChain()->GetBuffer(i, IID_PPV_ARGS(&m_pD3D12RenderTargetView->GetD3D12RenderTargetView(i))), "Faild to create D3D12RenderTargetView");
-		m_pD3D12RenderTargetView->CreateD3D12RenderTargetView(m_pD3D12Device->GetD3D12Device(), i, rtvHandle);
+		ThrowIfFailed(m_pD3D12RenderTargetView->CreateD3D12RenderTargetView(m_pD3D12Device->GetDevice(), m_pDXGISwapChain->GetSwapChain(), i, rtvHandle), "Faild to create D3D12RenderTargetView");
 		rtvHandle.ptr += rtvDescriptorSize;
 	}
+
+	//Create command allocator
+	m_pD3D12CommandAllocator = std::make_unique<D3D12CommandAllocator>();
+	ThrowIfFailed(m_pD3D12CommandAllocator->CreateCommandAllocator(m_pD3D12Device->GetDevice()), "Faild to create D3D12CommandAllocator");
+}
+
+//TODO: Allow shader to be dynamically load and discard later.
+void D3D12RHI::LoadAssets()
+{
 }

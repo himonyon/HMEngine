@@ -1,9 +1,9 @@
 // Copyright (c) 2024 YukiHino. All rights reserved.
 
-#include "include/d3x12.h"
+#include <d3d12.h>
 #include "D3D12CommandQueue.h"
 
-bool D3D12CommandQueue::CreateD3D12CommandQueue(ComPtr<ID3D12Device> pDevice)
+bool D3D12CommandQueue::CreateCommandQueue(ComPtr<ID3D12Device> pDevice)
 {
 	D3D12_COMMAND_QUEUE_DESC desc{};
 	desc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;

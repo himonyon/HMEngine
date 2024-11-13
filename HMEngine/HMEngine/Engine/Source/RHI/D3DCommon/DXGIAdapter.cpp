@@ -5,7 +5,7 @@
 #include <dxgi1_6.h>
 #include "DXGIAdapter.h"
 
-bool DXGIAdapter::CreateDXGIFactory()
+bool DXGIAdapter::CreateFactory()
 {
 	//CreateDXGI Factory
 	UINT dxgiCreateFactoryFlag = 0;
@@ -16,7 +16,7 @@ bool DXGIAdapter::CreateDXGIFactory()
 	return false;
 }
 
-bool DXGIAdapter::CreateDXGIAdapter()
+bool DXGIAdapter::CreateAdapter()
 {
 	//Create Adapter
 	for (int index = 0; m_pFactory6->EnumAdapterByGpuPreference(index, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(&m_pAdapter4)) != DXGI_ERROR_NOT_FOUND; index++)
@@ -47,12 +47,12 @@ bool DXGIAdapter::CreateDXGIAdapter()
 	return false;
 }
 
-ComPtr<IDXGIAdapter4> DXGIAdapter::GetDXGIAdapter()
+ComPtr<IDXGIAdapter4> DXGIAdapter::GetAdapter()
 {
 	return m_pAdapter4;
 }
 
-ComPtr<IDXGIFactory6> DXGIAdapter::GetDXGIFactory()
+ComPtr<IDXGIFactory6> DXGIAdapter::GetFactory()
 {
 	return m_pFactory6;
 }

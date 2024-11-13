@@ -1,11 +1,11 @@
 // Copyright (c) 2024 YukiHino. All rights reserved.
 
-#include "include/d3x12.h"
+#include <d3d12.h>
 #include "../D3DCommon/DXGISwapChain.h"
 #include "D3D12Device.h"
 #include "D3D12DescriptorHeap.h"
 
-bool D3D12DescriptorHeap::CreateD3D12DescriptorHeap(ComPtr<ID3D12Device> pDevice)
+bool D3D12DescriptorHeap::CreateDescriptorHeap(ComPtr<ID3D12Device> pDevice)
 {
 	D3D12_DESCRIPTOR_HEAP_DESC desc{};
 	desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
@@ -13,7 +13,7 @@ bool D3D12DescriptorHeap::CreateD3D12DescriptorHeap(ComPtr<ID3D12Device> pDevice
 	desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 	desc.NodeMask = 0;
 
-	if (SUCCEEDED(pDevice->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&m_pD3D12DescriptorHeap))))
+	if (SUCCEEDED(pDevice->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&m_pDescriptorHeap))))
 	{
 		return true;
 	}
@@ -23,5 +23,5 @@ bool D3D12DescriptorHeap::CreateD3D12DescriptorHeap(ComPtr<ID3D12Device> pDevice
 
 ComPtr<ID3D12DescriptorHeap> D3D12DescriptorHeap::GetDescriptorHeap()
 {
-	return m_pD3D12DescriptorHeap;
+	return m_pDescriptorHeap;
 }
