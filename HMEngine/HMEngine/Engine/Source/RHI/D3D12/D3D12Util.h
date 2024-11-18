@@ -16,8 +16,7 @@ inline void ThrowIfFailed(HRESULT hr, std::string errorMessage)
         }
         catch(const std::runtime_error& e)
         {
-            std::cout << e.what() << std::endl;
-            std::exit(1);
+            _RPT0(_CRT_ERROR, e.what());
         }
     }
 }

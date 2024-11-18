@@ -22,11 +22,13 @@
     <ClCompile Include="Engine\Source\Core\Core.cpp" />
     <ClCompile Include="Engine\Source\Core\HMEngine.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandAllocator.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandList.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12Device.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RenderTargetView.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RHI.cpp" />
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RootSignature.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.cpp" />
   </ItemGroup>
@@ -34,14 +36,27 @@
     <ClInclude Include="Engine\Source\Core\HMEngine.h" />
     <ClInclude Include="Engine\Source\include\common.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandAllocator.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandList.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Device.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RenderTargetView.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h" />
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RootSignature.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h" />
     <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.h" />
     <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Engine\Source\Shader\Default.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VSMain</EntryPointName>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -134,7 +149,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d12.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d12.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

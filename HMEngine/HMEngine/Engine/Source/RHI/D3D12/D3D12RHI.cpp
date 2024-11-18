@@ -2,8 +2,11 @@
 
 #include <dxgi1_6.h>
 #include <d3d12.h>
+#include <d3dcompiler.h>
 #include "../D3DCommon/DXGIAdapter.h"
 #include "../D3DCommon/DXGISwapChain.h"
+#include "D3D12RootSignature.h"
+#include "D3D12CommandList.h"
 #include "D3D12CommandAllocator.h"
 #include "D3D12RenderTargetView.h"
 #include "D3D12DescriptorHeap.h"
@@ -72,4 +75,13 @@ void D3D12RHI::LoadPipeline()
 //TODO: Allow shader to be dynamically load and discard later.
 void D3D12RHI::LoadAssets()
 {
+	//Create Root Signature
+	m_pD3D12RootSignature = std::make_unique<D3D12RootSignature>();
+	ThrowIfFailed(m_pD3D12RootSignature->CreateRootSignature(m_pD3D12Device->GetDevice()),"Faild to create D3D12RootSignature");
+
+	//Compile and load shader
+	ComPtr<ID3DBlob> pVertexShader;
+    ComPtr<ID3DBlob> pPixelShader;
+	ThrowIfFailed(D3DCompileFromFile(L"Engine/Source/Shader/Default.hlsl", nullptr, nullptr, "VSMain", "vs_5_0", 0, 0, &pVertexShader, nullptr), "Faild to Compile VS");
+	ThrowIfFailed(D3DCompileFromFile(L"Engine/Source/Shader/Default.hlsl", nullptr, nullptr, "PSMain", "ps_5_0", 0, 0, &pPixelShader, nullptr), "Faild to Compile PS");
 }

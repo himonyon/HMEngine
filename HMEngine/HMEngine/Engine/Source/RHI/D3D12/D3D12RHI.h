@@ -11,6 +11,7 @@ class D3D12CommandQueue;
 class D3D12DescriptorHeap;
 class D3D12RenderTargetView;
 class D3D12CommandAllocator;
+class D3D12RootSignature;
 
 class D3D12RHI
 {
@@ -34,4 +35,5 @@ private:
 	u_ptr<D3D12CommandAllocator> m_pD3D12CommandAllocator;
 	u_ptr<D3D12DescriptorHeap> m_pD3D12DescriptorHeap;
 	u_ptr<D3D12RenderTargetView> m_pD3D12RenderTargetView;
+	u_ptr<D3D12RootSignature> m_pD3D12RootSignature;
 };
