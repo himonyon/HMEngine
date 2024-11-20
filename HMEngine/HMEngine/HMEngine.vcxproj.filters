@@ -51,6 +51,9 @@
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RootSignature.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Source\RHI\D3D12\D3D12PipelineStateObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RHI.h">
@@ -90,6 +93,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12RootSignature.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Source\RHI\D3D12\D3D12PipelineStateObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

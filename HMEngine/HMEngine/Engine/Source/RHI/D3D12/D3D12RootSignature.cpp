@@ -16,14 +16,15 @@ bool D3D12RootSignature::CreateRootSignature(ComPtr<ID3D12Device> pDevice)
 	ComPtr<ID3DBlob> pSignature;
 	ComPtr<ID3DBlob> pError;
 	HRESULT hr;
-	if (!SUCCEEDED(D3D12SerializeVersionedRootSignature(&desc, &pSignature, &pError)))
+	if (FAILED(D3D12SerializeVersionedRootSignature(&desc, &pSignature, &pError)))
 	{
 		return false;
 	}
-	if (!SUCCEEDED(pDevice->CreateRootSignature(0, pSignature->GetBufferPointer(), pSignature->GetBufferSize(), IID_PPV_ARGS(&m_pRootSignature))))
+	if (FAILED(pDevice->CreateRootSignature(0, pSignature->GetBufferPointer(), pSignature->GetBufferSize(), IID_PPV_ARGS(&m_pRootSignature))))
 	{
 		return false;
 	}
+
 	return true;
 }
 

@@ -2,9 +2,9 @@
 
 #include <dxgi1_6.h>
 #include <d3d12.h>
-#include <d3dcompiler.h>
 #include "../D3DCommon/DXGIAdapter.h"
 #include "../D3DCommon/DXGISwapChain.h"
+#include "D3D12PipelineStateObject.h"
 #include "D3D12RootSignature.h"
 #include "D3D12CommandList.h"
 #include "D3D12CommandAllocator.h"
@@ -63,25 +63,31 @@ void D3D12RHI::LoadPipeline()
 	m_pD3D12RenderTargetView = std::make_unique<D3D12RenderTargetView>();
 	for (int i = 0; i < DXGISwapChain::FrameCount; i++)
 	{
-		ThrowIfFailed(m_pD3D12RenderTargetView->CreateD3D12RenderTargetView(m_pD3D12Device->GetDevice(), m_pDXGISwapChain->GetSwapChain(), i, rtvHandle), "Faild to create D3D12RenderTargetView");
+		ThrowIfFailed(m_pD3D12RenderTargetView->CreateD3D12RenderTargetView(m_pD3D12Device->GetDevice(), m_pDXGISwapChain->GetSwapChain(), i, rtvHandle), "Faild to create D3D12RenderTargetView.");
 		rtvHandle.ptr += rtvDescriptorSize;
 	}
 
 	//Create command allocator
 	m_pD3D12CommandAllocator = std::make_unique<D3D12CommandAllocator>();
-	ThrowIfFailed(m_pD3D12CommandAllocator->CreateCommandAllocator(m_pD3D12Device->GetDevice()), "Faild to create D3D12CommandAllocator");
+	ThrowIfFailed(m_pD3D12CommandAllocator->CreateCommandAllocator(m_pD3D12Device->GetDevice()), "Faild to create D3D12CommandAllocator.");
 }
 
 //TODO: Allow shader to be dynamically load and discard later.
 void D3D12RHI::LoadAssets()
 {
-	//Create Root Signature
-	m_pD3D12RootSignature = std::make_unique<D3D12RootSignature>();
-	ThrowIfFailed(m_pD3D12RootSignature->CreateRootSignature(m_pD3D12Device->GetDevice()),"Faild to create D3D12RootSignature");
+	ComPtr<ID3D12Device> pDevice = m_pD3D12Device->GetDevice();
 
-	//Compile and load shader
-	ComPtr<ID3DBlob> pVertexShader;
-    ComPtr<ID3DBlob> pPixelShader;
-	ThrowIfFailed(D3DCompileFromFile(L"Engine/Source/Shader/Default.hlsl", nullptr, nullptr, "VSMain", "vs_5_0", 0, 0, &pVertexShader, nullptr), "Faild to Compile VS");
-	ThrowIfFailed(D3DCompileFromFile(L"Engine/Source/Shader/Default.hlsl", nullptr, nullptr, "PSMain", "ps_5_0", 0, 0, &pPixelShader, nullptr), "Faild to Compile PS");
+	//Create root signature
+	m_pD3D12RootSignature = std::make_unique<D3D12RootSignature>();
+	ThrowIfFailed(m_pD3D12RootSignature->CreateRootSignature(m_pD3D12Device->GetDevice()),"Faild to create D3D12RootSignature.");
+
+	m_pD3D12PipelineStateObject = std::make_unique<D3D12PipelineStateObject>();
+	ThrowIfFailed(m_pD3D12PipelineStateObject->CreatePipelineStateObject(pDevice, m_pD3D12RootSignature->GetRootSignature()),"Faild to create PSO.");
+
+	//Create command list
+	m_pD3D12CommandList = std::make_unique<D3D12CommandList>();
+	ThrowIfFailed(m_pD3D12CommandList->CreateCommandList(pDevice, m_pD3D12CommandAllocator->GetCommandAllocator(), m_pD3D12PipelineStateObject->GetPipelineState()), "Faild to create D3D12CommandList.");
+
+	//Close command list
+	ThrowIfFailed(m_pD3D12CommandList->GetCommandList()->Close(), "Faild to close command list.");
 }
