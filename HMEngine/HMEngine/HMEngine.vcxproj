@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Source\Asset\Material.cpp" />
+    <ClCompile Include="Engine\Source\Asset\Mesh.cpp" />
+    <ClCompile Include="Engine\Source\Component\MeshComp.cpp" />
     <ClCompile Include="Engine\Source\Core\Core.cpp" />
     <ClCompile Include="Engine\Source\Core\HMEngine.cpp" />
+    <ClCompile Include="Engine\Source\Object\MObject.cpp" />
+    <ClCompile Include="Engine\Source\Object\Object.cpp" />
+    <ClCompile Include="Engine\Source\Object\RObject.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandAllocator.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandList.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12CommandQueue.cpp" />
@@ -32,10 +38,17 @@
     <ClCompile Include="Engine\Source\RHI\D3D12\D3D12RootSignature.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.cpp" />
     <ClCompile Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.cpp" />
+    <ClCompile Include="Engine\Source\Scene\SceneObjectPool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Source\Asset\Material.h" />
+    <ClInclude Include="Engine\Source\Asset\Mesh.h" />
+    <ClInclude Include="Engine\Source\Component\MeshComp.h" />
     <ClInclude Include="Engine\Source\Core\HMEngine.h" />
     <ClInclude Include="Engine\Source\include\common.h" />
+    <ClInclude Include="Engine\Source\Object\MObject.h" />
+    <ClInclude Include="Engine\Source\Object\Object.h" />
+    <ClInclude Include="Engine\Source\Object\RObject.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandAllocator.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12CommandList.h" />
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12DescriptorHeap.h" />
@@ -48,6 +61,7 @@
     <ClInclude Include="Engine\Source\RHI\D3D12\D3D12Util.h" />
     <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGIAdapter.h" />
     <ClInclude Include="Engine\Source\RHI\D3DCommon\DXGISwapChain.h" />
+    <ClInclude Include="Engine\Source\Scene\SceneObjectPool.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Engine\Source\Shader\Default.hlsl">
